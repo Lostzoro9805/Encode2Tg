@@ -66,9 +66,9 @@ logging.getLogger("urllib3").setLevel(logging.INFO)
 LOGS = logging.getLogger(__name__)
 
 try:
-  LOG_CHANNEL
+    LOG_CHANNEL
 except Exception:
-  LOG_CHANNEL = ""
+    LOG_CHANNEL = ""
 
 try:
     bot = TelegramClient(None, APP_ID, API_HASH)

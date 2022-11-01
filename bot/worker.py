@@ -19,7 +19,6 @@ from pathlib import Path
 
 import psutil
 
-from .FastTelethon import upload_file
 from .funcn import *
 from .util import custcap, dynamicthumb, get_readable_file_size, parse
 from .worker import *
@@ -374,9 +373,6 @@ async def stats(e):
             cache_time=0,
             alert=True,
         )
-
-
-
 
 
 async def encod(event):
