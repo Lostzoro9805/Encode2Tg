@@ -1,4 +1,4 @@
-#Encode2Tg
+#Encode2Tg [BETA]
 
 ## With HandBrakeCLI support
 
