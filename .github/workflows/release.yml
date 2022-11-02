@@ -12,11 +12,11 @@ jobs:
     - name: Archive Release
       uses: thedoctor0/zip-release@main
       with:
-        type: 'zip'
-        filename: 'release.zip'
-        exclusions: '*.git* /*node_modules/* .editorconfig'
+        type: 'tar'
+        filename: 'Source code.tar'
+        exclusions: '.github'
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "release.zip"
+        artifacts: "Source code.tar"
         token: ${{ secrets.GITHUB_TOKEN }}
