@@ -295,12 +295,12 @@ async def custcap(name, fname):
             else:
                 fil3t = "English Subtitle"
         except Exception:
-          pass
+            pass
         olif = Path("filter.txt")
         if olif.is_file():
-          pass
+            pass
         else:
-          fil3 = fil3t
+            fil3 = fil3t
         try:
             variables = {"search": oi, "type": "ANIME"}
             json = (

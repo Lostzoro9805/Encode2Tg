@@ -50,7 +50,6 @@ async def _(e):
     await help(e)
 
 
-
 @bot.on(events.NewMessage(pattern="/restart"))
 async def _(e):
     await restart(e)

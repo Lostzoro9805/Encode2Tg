@@ -14,36 +14,37 @@
 # https://github.com/1Danish-00/CompressorQueue/blob/main/License> .
 from decouple import config
 
-#For Local deployment uncomment the commented variables and comment the uncommented ines
+# For Local deployment uncomment the commented variables and comment the
+# uncommented ines
 
 
 try:
     APP_ID = config("APP_ID", default=6, cast=int)
-    #APP_ID = ""
+    # APP_ID = ""
     API_HASH = config("API_HASH", default="eb06d4abfb49dc3eeb1aeb98ae0f581e")
-    #API_HASH = ""
+    # API_HASH = ""
     BOT_TOKEN = config("BOT_TOKEN")
-    #BOT_TOKEN = ""
+    # BOT_TOKEN = ""
     DEV = 1322549723
     OWNER = config("OWNER")
-    #OWNER = "" 
+    # OWNER = ""
     FFMPEG = config(
         "FFMPEG",
-        default='ffmpeg -i "{}" -preset ultrafast -c:v libx265 -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? "{}"'
-        )
-    #FFMPEG = ""
+        default='ffmpeg -i "{}" -preset ultrafast -c:v libx265 -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? "{}"',
+    )
+    # FFMPEG = ""
     THUMB = config(
         "THUMBNAIL", default="https://telegra.ph/file/ab23f5209aae9cae3ba3c.jpg"
-        )
-    #THUMB = ""
+    )
+    # THUMB = ""
     ICON = config("ICON", default="https://te.legra.ph/file/462b5a002f80bdf8a1ec1.png")
-    #ICON = ""
+    # ICON = ""
     LOG_CHANNEL = config("LOG_CHANNEL", default="")
-    #LOG_CHANNEL = ""
+    # LOG_CHANNEL = ""
     DBNAME = config("DBNAME", default="TgEncode")
-    #DBNAME = ""
+    # DBNAME = ""
     DATABASE_URL = config("DATABASE_URL")
-    #DATABASE_URL = ""
+    # DATABASE_URL = ""
 except Exception as e:
     print("Environment vars Missing")
     print("something went wrong")
