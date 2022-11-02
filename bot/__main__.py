@@ -166,10 +166,6 @@ async def _(e):
     await allowgroupenc(e)
 
 
-@bot.on(events.NewMessage(pattern="/cmds"))
-async def _(e):
-    await detail(e)
-
 
 @bot.on(events.NewMessage(pattern="/logs"))
 async def _(e):

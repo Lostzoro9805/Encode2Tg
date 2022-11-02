@@ -1,4 +1,4 @@
-# Encode2Tg [BETA]
+# Encode2Tg [BETA] [![pyLint](https://github.com/Niffy-the-conqueror/Encode2Tg/actions/workflows/pyLint.yml/badge.svg?branch=anime)](https://github.com/Niffy-the-conqueror/Encode2Tg/actions/workflows/pyLint.yml)
 
 ## With HandBrakeCLI support
 
@@ -16,10 +16,12 @@ __Customized To work Specifically For Animes!__
 
 
 ### Commands
-```start - Check If Bot Is Awake
+```
+start - Check If Bot Is Awake
 restart - ☢️ Restart Bot 
 bash - /bash + command 
 eval - Evaluate code
+peval - same as eval but with pyrogram 
 ping - Ping!
 fix - Turn V2 On (With Message) or Off
 get - Get Current ffmpeg code
@@ -31,12 +33,12 @@ groupenc - Allow Encoding in Group Toggle
 delfilter - Delete filter
 status - 🆕 Get bot's status
 showthumb - 🖼️ Show Current Thumbnail
-cmds - List Available Commands
+parse - Toggle Parsing with captions 
 cancelall - ❌ Clear Cached Downloads & Queued Files
 clear - Clear Queued Files
 logs - Get Bot Logs
-help - Get Detailed Help```
+help - Get Detailed Help
+```
+### Source 
 
-###Source 
-
-- [Heavily Modified Fork of Danish CompressorQueue](https://github.com/1Danish-00/CompressorQueue)
+- **[An Heavily Modified Fork of Danish CompressorQueue](https://github.com/1Danish-00/CompressorQueue)**
