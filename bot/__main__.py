@@ -166,7 +166,6 @@ async def _(e):
     await allowgroupenc(e)
 
 
-
 @bot.on(events.NewMessage(pattern="/logs"))
 async def _(e):
     await getlogs(e)
