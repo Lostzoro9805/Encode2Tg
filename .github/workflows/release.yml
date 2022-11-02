@@ -13,10 +13,10 @@ jobs:
       uses: thedoctor0/zip-release@main
       with:
         type: 'tar'
-        filename: 'Source code.tar'
-        exclusions: '.github'
+        filename: 'release.tar'
+        exclusions: '*.git* .github'
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "Source code.tar"
+        artifacts: "release.tar"
         token: ${{ secrets.TOKEN }}
