@@ -19,4 +19,4 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "Source code.tar"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TOKEN }}
