@@ -433,7 +433,7 @@ async def pencode(message):
             QUEUE.update({doc.file_id: [name, user]})
             await save2db()
             return await xxx.edit(
-                "**Added To Queue ⏰,** \n`Please Wait , Compress will start soon`"
+                "**Added To Queue ⏰,** \n`Please Wait , Encode will start soon`"
             )
         WORKING.append(1)
         xxx = await message.reply(
@@ -702,7 +702,7 @@ async def pencode(message):
         if LOG_CHANNEL:
             await dp.copy(chat_id=chat)
         dk = await ds.reply(
-            f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nCompressed Size : {hbs(com)}\nCompressed Percentage : {per}\n\nDownloaded in {x}\nCompressed in {xx}\nUploaded in {xxx}",
+            f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nEncoded Size : {hbs(com)}\nEncoded Percentage : {per}\n\nDownloaded in {x}\nEncoded in {xx}\nUploaded in {xxx}",
             disable_web_page_preview=True,
             quote=True,
         )

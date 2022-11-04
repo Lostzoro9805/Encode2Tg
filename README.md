@@ -9,10 +9,6 @@
 
 `THUMBNAIL` : Put telegraph link of a picture for use of Thumbnail.
 
-`LOG_CHANNEL` : Input Log Channel ID 
-
-`DATABASE_URL` : Valid Mongodb Database Url
-
 `FFMPEG` : Put Your FFMPEG Code or Handbrake-cli code (after installing it)  with """{}""" as input and output. (Eg. `ffmpeg -i """{}""" -preset veryfast -vcodec libx265 -crf 27 """{}"""`)
 
 ### Anime branch 

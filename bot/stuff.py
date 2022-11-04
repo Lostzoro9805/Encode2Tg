@@ -81,13 +81,13 @@ async def start(event):
 
 async def help(event):
     await event.reply(
-        "**🐠 A Quality CompressorQueue**\n\n+This Bot Compress Videos With Negligible Quality Change.\n+Generate Sample Compressed Video\n+Easy to Use\n-Due to Quality Settings Bot Takes Time To Compress.\nSo Be patience Nd Send videos One By One After Completing.\nDont Spam Bot.\n\nJust Forward Video To Get Options"
+        "**🐠 A Quality CompressorQueue**\n\n+This Bot Encode Videos With Negligible Quality Change.\n+Generate Sample Encoded Video\n+Easy to Use\n-Due to Quality Settings Bot Takes Time To Encode.\nSo Be patience Nd Send videos One By One After Completing.\nDont Spam Bot.\n\nJust Forward Video To Get Options"
     )
 
 
 async def ihelp(event):
     await event.edit(
-        "**🐠 A Quality CompressorQueue**\n\n+This Bot Compress Videos With Negligible Quality Change.\n+Generate Sample Compressed Video\n+Screenshots Too\n+Easy to Use\n-Due to Quality Settings Bot Takes Time To Compress.\nSo Be patience Nd Send videos One By One After Completing.\nDont Spam Bot.\n\nJust Forward Video To Get Options",
+        "**🐠 A Quality CompressorQueue**\n\n+This Bot Encode Videos With Negligible Quality Change.\n+Generate Sample Encoded Video\n+Screenshots Too\n+Easy to Use\n-Due to Quality Settings Bot Takes Time To Encode.\nSo Be patience Nd Send videos One By One After Completing.\nDont Spam Bot.\n\nJust Forward Video To Get Options",
         buttons=[Button.inline("BACK", data="beck")],
     )
 

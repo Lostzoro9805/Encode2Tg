@@ -355,7 +355,7 @@ async def something():
                 if LOG_CHANNEL:
                     await dp.copy(chat_id=chat)
                 dk = await ds.reply(
-                    f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nCompressed Size : {hbs(com)}\nCompressed Percentage : {per}\n\nDownloaded in {x}\nCompressed in {xx}\nUploaded in {xxx}",
+                    f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nEncoded Size : {hbs(com)}\nEncoded Percentage : {per}\n\nDownloaded in {x}\nEncoded in {xx}\nUploaded in {xxx}",
                     disable_web_page_preview=True,
                     quote=True,
                 )

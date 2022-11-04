@@ -1,10 +1,10 @@
 {
-    "name": "light-Queue-Enc",
-    "description": "A Normal Telegram Bot Which can Compress/encode/ Generate Samples of videos.",
+    "name": "Encode2tg",
+    "description": "A Normal Telegram Bot Which can Encode/ Generate Samples of videos.",
     "logo": "https://telegra.ph/file/75ee20ec8d8c8bba84f02.jpg",
     "keywords": ["Telegram","python", "Video","Compressor","Encoder"],
-    "repository": "https://github.com/Col-Serra/light-Queue-Enc",
-    "success_url": "https://t.me/Rs_Community",
+    "repository": "https://github.com/Niffy-the-conqueror/Encode2Tg",
+    "success_url": "https://t.me/Ani_Mine",
     "stack": "container",
     "env": {
         "APP_ID": {
@@ -27,6 +27,20 @@
             "description": "Put Link of any picture.",
             "value": "https://telegra.ph//file/6370f098231e0bc94be70.jpg",
             "required": false
+        },
+        "DBNAME": {
+            "description": "Name Of Database Useful if sharing same database amoung multiple bots.",
+            "value": "",
+            "required": false
+        },
+        "LOG_CHANNEL": {
+            "description": "Input Log Channel Id",
+            "value": "",
+            "required": false
+        },
+        "DATABASE_URL": {
+            "description": "Mongodb Database Url",
+            "value": ""
         },
         "FFMPEG": {
             "description": "Put your FFMPEG code.",
