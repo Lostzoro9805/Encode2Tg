@@ -26,17 +26,17 @@ def get_readable_file_size(size_in_bytes) -> str:
 wname = Path("Namefilter.txt")
 wrelease = Path("Releasefilter.txt")
 if wname.is_file():
-  with open("Namefilter.txt", "r") as file:
-    wnamer = file.read()
-    file.close()
+    with open("Namefilter.txt", "r") as file:
+        wnamer = file.read()
+        file.close()
 else:
-  wnamer = ''
+    wnamer = ""
 if wrelease.is_file():
-  with open("Releasefilter.txt", "r") as file:
-    wreleaser = file.read()
-    file.close()
+    with open("Releasefilter.txt", "r") as file:
+        wreleaser = file.read()
+        file.close()
 else:
-  wreleaser = ''
+    wreleaser = ""
 
 
 url = "https://graphql.anilist.co"
@@ -229,32 +229,32 @@ async def parse(name, kk, aa):
                 cb = cb.split(":")[0]
             else:
                 cb = b
-            col = ''
+            col = ""
             if wreleaser:
-              for item in wreleaser.split("\n"):
-                if item.split(":")[0] in name:
-                  if item.split(":")[1] != "Disable":
-                    wcol = item.split(":")[1]
-                    break
-                  else:
-                    wcol = ''
-                else:
-                  wcol = ''
+                for item in wreleaser.split("\n"):
+                    if item.split(":")[0] in name:
+                        if item.split(":")[1] != "Disable":
+                            wcol = item.split(":")[1]
+                            break
+                        else:
+                            wcol = ""
+                    else:
+                        wcol = ""
             if wnamer:
-              for item in wnamer.split("\n"):
-                if item.split(":")[0] in name:
-                  if item.split(":")[1] != "Disable":
-                    col = item.split(":")[1]
-                    break
-                  else:
-                    col = ''
-                else:
-                  if wcol:
-                    col = wcol
-                  else:
-                    col = ''
+                for item in wnamer.split("\n"):
+                    if item.split(":")[0] in name:
+                        if item.split(":")[1] != "Disable":
+                            col = item.split(":")[1]
+                            break
+                        else:
+                            col = ""
+                    else:
+                        if wcol:
+                            col = wcol
+                        else:
+                            col = ""
             if col:
-              pass
+                pass
             else:
                 col = con
             bb = ""
@@ -318,37 +318,37 @@ async def custcap(name, fname):
         if oi is None:
             raise Exception("Parsing Failed")
         try:
-          fil3t = ''
-          if wreleaser:
-            for item in wreleaser.split("\n"):
-              if item.split(":")[0] in e:
-                if item.split(":")[2] != "Disable":
-                  wfil3t = item.split(":")[2]
-                  break
-                else:
-                  wfil3t = ''
-              else:
-                wfil3t = ''
-          if wnamer:
-            for item in wnamer.split("\n"):
-              if item.split(":")[0] in e:
-                if item.split(":")[2] != "Disable":
-                  fil3t = item.split(":")[2]
-                  break
-                else:
-                  fil3t = ''
-              else:
-                if wfil3t:
-                  fil3t = wfil3t
-                else:
-                  fil3t = ''
-          if fil3t:
-            pass
-          else:
-            if s:
-                fil3t = s
+            fil3t = ""
+            if wreleaser:
+                for item in wreleaser.split("\n"):
+                    if item.split(":")[0] in e:
+                        if item.split(":")[2] != "Disable":
+                            wfil3t = item.split(":")[2]
+                            break
+                        else:
+                            wfil3t = ""
+                    else:
+                        wfil3t = ""
+            if wnamer:
+                for item in wnamer.split("\n"):
+                    if item.split(":")[0] in e:
+                        if item.split(":")[2] != "Disable":
+                            fil3t = item.split(":")[2]
+                            break
+                        else:
+                            fil3t = ""
+                    else:
+                        if wfil3t:
+                            fil3t = wfil3t
+                        else:
+                            fil3t = ""
+            if fil3t:
+                pass
             else:
-                fil3t = "English Subtitle"
+                if s:
+                    fil3t = s
+                else:
+                    fil3t = "English Subtitle"
         except Exception:
             pass
         olif = Path("filter.txt")
