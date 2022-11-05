@@ -1,2 +1,2 @@
-Yameii:Eng:None
+Yameii:Eng:Disable
 LostYears:Dual:Dual Audio

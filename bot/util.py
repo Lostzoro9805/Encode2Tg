@@ -232,7 +232,7 @@ async def parse(name, kk, aa):
             col = ""
             if wreleaser:
                 for item in wreleaser.split("\n"):
-                    if item.split(":")[0] in name:
+                    if item.split(":")[0] in e:
                         if item.split(":")[1] != "Disable":
                             wcol = item.split(":")[1]
                             break
@@ -331,7 +331,7 @@ async def custcap(name, fname):
                         wfil3t = ""
             if wnamer:
                 for item in wnamer.split("\n"):
-                    if item.split(":")[0] in e:
+                    if item.split(":")[0] in name:
                         if item.split(":")[2] != "Disable":
                             fil3t = item.split(":")[2]
                             break

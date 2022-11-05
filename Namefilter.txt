@@ -1,5 +1,5 @@
 MULTi:MULTi:(Multi-Audio) (Multi-Subs)
-B-Global:None:(Multi-Subs) (B-Global)
+B-Global:Disable:(Multi-Subs) (B-Global)
 DUAL:Dual:Dual
 Dual:Dual:Dual
-Multi:None: Multi-Subs
+Multi:Disable:Multi-Subs
