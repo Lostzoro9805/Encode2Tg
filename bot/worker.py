@@ -117,28 +117,29 @@ async def restart(event):
         await event.reply("Error Occurred")
         LOGS.info(str(err))
 
+
 async def listqueue(event):
-  if str(event.sender_id) not in OWNER:
-    return await event.delete()
-  if not QUEUE:
-    await event.reply("Nothing In Queue")
-    await asyncio.sleep(3)
-    return await event.delete()
-  try:
-    i = 1
-    x = ''
-    while i < len(QUEUE):
-      y, yy = QUEUE[list(QUEUE.keys())[i]]
-      x += f"{i}. {y}\n"
-      i = i + 1
-    x += "To remove an item from queue use /clear <queue number>"
-  except Exception:
-    x = "No Pending Item in Queue"
-  yo = await event.reply(x)
-  await asyncio.sleep(10)
-  await event.delete()
-  await yo.delete()
-    
+    if str(event.sender_id) not in OWNER:
+        return await event.delete()
+    if not QUEUE:
+        await event.reply("Nothing In Queue")
+        await asyncio.sleep(3)
+        return await event.delete()
+    try:
+        i = 1
+        x = ""
+        while i < len(QUEUE):
+            y, yy = QUEUE[list(QUEUE.keys())[i]]
+            x += f"{i}. {y}\n"
+            i = i + 1
+        x += "To remove an item from queue use /clear <queue number>"
+    except Exception:
+        x = "No Pending Item in Queue"
+    yo = await event.reply(x)
+    await asyncio.sleep(10)
+    await event.delete()
+    await yo.delete()
+
 
 async def reffmpeg(event):
     if str(event.sender_id) not in OWNER:
@@ -286,7 +287,7 @@ async def filter(event):
 async def clearqueue(event):
     if str(event.sender_id) not in OWNER and event.sender_id != DEV:
         return await event.delete()
-    temp = ''
+    temp = ""
     try:
         temp = event.text.split(" ", maxsplit=1)[1]
     except Exception:
