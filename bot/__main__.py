@@ -161,6 +161,11 @@ async def _(e):
     await change(e)
 
 
+@bot.on(events.NewMessage(pattern="/queue"))
+async def _(e):
+    await listqueue(e)
+
+
 @bot.on(events.NewMessage(pattern="/groupenc"))
 async def _(e):
     await allowgroupenc(e)

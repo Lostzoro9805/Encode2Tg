@@ -117,6 +117,28 @@ async def restart(event):
         await event.reply("Error Occurred")
         LOGS.info(str(err))
 
+async def listqueue(event):
+  if str(event.sender_id) not in OWNER:
+    return await event.delete()
+  if not QUEUE:
+    await event.reply("Nothing In Queue")
+    await asyncio.sleep(3)
+    return await event.delete()
+  try:
+    i = 1
+    x = ''
+    while i < len(QUEUE):
+      y, yy = QUEUE[list(QUEUE.keys())[i]]
+      x += f"{i}. {y}\n"
+      i = i + 1
+    x += "To remove an item from queue use /clear <queue number>"
+  except Exception:
+    x = "No Pending Item in Queue"
+  yo = await event.reply(x)
+  await asyncio.sleep(10)
+  await event.delete()
+  await yo.delete()
+    
 
 async def reffmpeg(event):
     if str(event.sender_id) not in OWNER:
@@ -264,9 +286,30 @@ async def filter(event):
 async def clearqueue(event):
     if str(event.sender_id) not in OWNER and event.sender_id != DEV:
         return await event.delete()
-    await event.reply("**Cleared Queued Files!**")
-    QUEUE.clear()
-    queue.delete_many({})
+    temp = ''
+    try:
+        temp = event.text.split(" ", maxsplit=1)[1]
+    except Exception:
+        pass
+    if temp:
+        try:
+            temp = int(temp)
+            try:
+                QUEUE.pop(list(QUEUE.keys())[temp])
+                q, file = QUEUE[list(QUEUE.keys())[temp]]
+                yo = await event.rely(f"{q} has been removed from queue")
+                await save2db()
+            except Exception:
+                yo = await event.reply("Enter a valid queue number")
+        except Exception:
+            yo = await event.reply("Pass a number for an item on queue to be removed")
+    else:
+        yo = await event.reply("**Cleared Queued Files!**")
+        QUEUE.clear()
+        queue.delete_many({})
+    await asyncio.sleep(7)
+    await event.delete()
+    await yo.delete()
     return
 
 
