@@ -125,8 +125,9 @@ async def listqueue(event):
     if str(event.sender_id) not in OWNER:
         return await event.delete()
     if not QUEUE:
-        await event.reply("Nothing In Queue")
+        yo = await event.reply("Nothing In Queue")
         await asyncio.sleep(3)
+        await yo.delete()
         return await event.delete()
     try:
         if WORKING:
@@ -138,7 +139,34 @@ async def listqueue(event):
             y, yy = QUEUE[list(QUEUE.keys())[i]]
             x += f"{i}. {y}\n"
             i = i + 1
-        x += "\n **To remove an item from queue use** /clear <queue number>"
+        x += "\n**To remove an item from queue use** /clear <queue number>"
+    except Exception:
+        x = "No Pending Item in Queue 😒"
+    yo = await event.reply(x)
+    await asyncio.sleep(10)
+    await event.delete()
+    await yo.delete()
+
+async def listqueuep(event):
+    if str(event.sender_id) not in OWNER:
+        return await event.delete()
+    if not QUEUE:
+        yo = await event.reply("Nothing In Queue")
+        await asyncio.sleep(3)
+        await yo.delete()
+        return await event.delete()
+    try:
+        if WORKING:
+          i = 0
+        else:
+          i = 1
+        x = ""
+        while i < len(QUEUE):
+            y, yy = QUEUE[list(QUEUE.keys())[i]]
+            y = await qparse(y)
+            x += f"{i}. {y}\n"
+            i = i + 1
+        x += "\n**Queue based on auto-generated filename if you you want the actual queue use the command** /queue "
     except Exception:
         x = "No Pending Item in Queue 😒"
     yo = await event.reply(x)
@@ -219,9 +247,9 @@ async def getthumb(event):
         return await event.delete()
     tbcheck = Path("thumb2.jpg")
     if tbcheck.is_file():
-        thum = "/bot/thumb2.jpg"
+        thum = "thumb2.jpg"
     else:
-        thum = "/bot/thumb.jpg"
+        thum = "thumb.jpg"
     await event.client.send_file(
         event.chat_id,
         file=thum,
