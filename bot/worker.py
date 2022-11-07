@@ -31,7 +31,7 @@ async def getlogs(event):
 
 
 async def save2db():
-    if DAT:
+    if DATABASE_URL:
         y = json.dumps(QUEUE)
         queue.delete_many({})
         queue.insert_one({"queue": y})
