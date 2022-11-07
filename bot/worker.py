@@ -129,15 +129,18 @@ async def listqueue(event):
         await asyncio.sleep(3)
         return await event.delete()
     try:
-        i = 1
+        if WORKING:
+          i = 0
+        else:
+          i = 1
         x = ""
         while i < len(QUEUE):
             y, yy = QUEUE[list(QUEUE.keys())[i]]
             x += f"{i}. {y}\n"
             i = i + 1
-        x += "To remove an item from queue use /clear <queue number>"
+        x += "\n **To remove an item from queue use** /clear <queue number>"
     except Exception:
-        x = "No Pending Item in Queue"
+        x = "No Pending Item in Queue 😒"
     yo = await event.reply(x)
     await asyncio.sleep(10)
     await event.delete()
@@ -300,9 +303,9 @@ async def clearqueue(event):
         try:
             temp = int(temp)
             try:
-                QUEUE.pop(list(QUEUE.keys())[temp])
                 q, file = QUEUE[list(QUEUE.keys())[temp]]
-                yo = await event.rely(f"{q} has been removed from queue")
+                QUEUE.pop(list(QUEUE.keys())[temp])
+                yo = await event.reply(f"{q} has been removed from queue")
                 await save2db()
             except Exception:
                 yo = await event.reply("Enter a valid queue number")

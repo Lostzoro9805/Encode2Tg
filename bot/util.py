@@ -27,13 +27,13 @@ wname = Path("Namefilter.txt")
 wrelease = Path("Releasefilter.txt")
 if wname.is_file():
     with open("Namefilter.txt", "r") as file:
-        wnamer = file.read()
+        wnamer = file.read().strip()
         file.close()
 else:
     wnamer = ""
 if wrelease.is_file():
     with open("Releasefilter.txt", "r") as file:
-        wreleaser = file.read()
+        wreleaser = file.read().strip()
         file.close()
 else:
     wreleaser = ""
