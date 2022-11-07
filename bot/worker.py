@@ -31,17 +31,17 @@ async def getlogs(event):
 
 
 async def save2db():
-  if DAT:
-    y = json.dumps(QUEUE)
-    queue.delete_many({})
-    queue.insert_one({"queue": y})
+    if DAT:
+        y = json.dumps(QUEUE)
+        queue.delete_many({})
+        queue.insert_one({"queue": y})
 
 
 async def save2db2(mara, para):
-  if DATABASE_URL:
-    y = json.dumps(para)
-    mara.delete_many({})
-    mara.insert_one({"queue": [y, "0"]})
+    if DATABASE_URL:
+        y = json.dumps(para)
+        mara.delete_many({})
+        mara.insert_one({"queue": [y, "0"]})
 
 
 async def version2(event):
@@ -738,21 +738,21 @@ async def pencode(message):
         xx = ts(int((ees - es).seconds) * 1000)
         xxx = ts(int((eees - ees).seconds) * 1000)
         try:
-         a1 = await info(dl, e)
-         a2 = await info(out, e)
-         text = ""
-         if rlsgrp:
-            text += f"**Source:** `[{rlsgrp}]`"
-         text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
-         dp = await ds.reply(
-            text,
-            disable_web_page_preview=True,
-            quote=True,
-        )
-         if LOG_CHANNEL:
-            await dp.copy(chat_id=chat)
+            a1 = await info(dl, e)
+            a2 = await info(out, e)
+            text = ""
+            if rlsgrp:
+                text += f"**Source:** `[{rlsgrp}]`"
+            text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
+            dp = await ds.reply(
+                text,
+                disable_web_page_preview=True,
+                quote=True,
+            )
+            if LOG_CHANNEL:
+                await dp.copy(chat_id=chat)
         except Exception:
-          pass
+            pass
         dk = await ds.reply(
             f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nEncoded Size : {hbs(com)}\nEncoded Percentage : {per}\n\nDownloaded in {x}\nEncoded in {xx}\nUploaded in {xxx}",
             disable_web_page_preview=True,

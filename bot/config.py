@@ -43,7 +43,7 @@ try:
     # LOG_CHANNEL = ""
     DBNAME = config("DBNAME", default="TgEncode")
     # DBNAME = ""
-    DATABASE_URL = config("DATABASE_URL", Default= "")
+    DATABASE_URL = config("DATABASE_URL", Default="")
     # DATABASE_URL = ""
 except Exception as e:
     print("Environment vars Missing")

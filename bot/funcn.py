@@ -54,41 +54,41 @@ if not os.path.isdir("thumb/"):
     os.mkdir("thumb/")
 
 if DATABASE_URL:
- cluster = MongoClient(DATABASE_URL)
-  db = cluster[DBNAME]
- queue = db["queue"]
- ffmpegdb = db["code"]
- filterz = db["filter"]
- queries = queue.find({})
- for query in queries:
-    que = str(query["queue"])
-    io = StringIO(que)
-    pre = json.load(io)
-    QUEUE.update(pre)
- queries = ffmpegdb.find({})
- for query in queries:
-    que = query["queue"]
-    que = que[0]
-    io = StringIO(que)
-    pre = json.load(io)
-    if len(pre) < 5:
-        pass
-    else:
-        file = open("ffmpeg.txt", "w")
-        file.write(str(pre) + "\n")
-        file.close()
- queries = filterz.find({})
- for query in queries:
-    que = query["queue"]
-    que = que[0]
-    io = StringIO(que)
-    pre = json.load(io)
-    if len(pre) < 5:
-        pass
-    else:
-        file = open("filter.txt", "w")
-        file.write(str(pre) + "\n")
-        file.close()
+    cluster = MongoClient(DATABASE_URL)
+    db = cluster[DBNAME]
+    queue = db["queue"]
+    ffmpegdb = db["code"]
+    filterz = db["filter"]
+    queries = queue.find({})
+    for query in queries:
+        que = str(query["queue"])
+        io = StringIO(que)
+        pre = json.load(io)
+        QUEUE.update(pre)
+    queries = ffmpegdb.find({})
+    for query in queries:
+        que = query["queue"]
+        que = que[0]
+        io = StringIO(que)
+        pre = json.load(io)
+        if len(pre) < 5:
+            pass
+        else:
+            file = open("ffmpeg.txt", "w")
+            file.write(str(pre) + "\n")
+            file.close()
+    queries = filterz.find({})
+    for query in queries:
+        que = query["queue"]
+        que = que[0]
+        io = StringIO(que)
+        pre = json.load(io)
+        if len(pre) < 5:
+            pass
+        else:
+            file = open("filter.txt", "w")
+            file.write(str(pre) + "\n")
+            file.close()
 
 
 def stdr(seconds: int) -> str:
