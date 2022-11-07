@@ -131,9 +131,9 @@ async def listqueue(event):
         return await event.delete()
     try:
         if WORKING:
-          i = 0
+            i = 0
         else:
-          i = 1
+            i = 1
         x = ""
         while i < len(QUEUE):
             y, yy = QUEUE[list(QUEUE.keys())[i]]
