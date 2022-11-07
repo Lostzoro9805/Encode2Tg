@@ -31,12 +31,14 @@ async def getlogs(event):
 
 
 async def save2db():
+  if DAT:
     y = json.dumps(QUEUE)
     queue.delete_many({})
     queue.insert_one({"queue": y})
 
 
 async def save2db2(mara, para):
+  if DATABASE_URL:
     y = json.dumps(para)
     mara.delete_many({})
     mara.insert_one({"queue": [y, "0"]})
@@ -78,7 +80,8 @@ async def clean(event):
     await event.reply("**Cleared Queued, Working Files and Cached Downloads!**")
     WORKING.clear()
     QUEUE.clear()
-    queue.delete_many({})
+    if DATABASE_URL:
+        queue.delete_many({})
     os.system("rm -rf downloads/*")
     os.system("rm -rf encode/*")
     for proc in psutil.process_iter():
@@ -230,7 +233,8 @@ async def rmfilter(event):
     try:
         fl = "filter.txt"
         os.remove(fl)
-        filterz.delete_many({})
+        if DATABASE_URL:
+            filterz.delete_many({})
         await event.reply("`Filters Deleted!`")
     except Exception:
         await event.reply("❌ No Filters Found To Delete")
@@ -307,7 +311,8 @@ async def clearqueue(event):
     else:
         yo = await event.reply("**Cleared Queued Files!**")
         QUEUE.clear()
-        queue.delete_many({})
+        if DATABASE_URL:
+            queue.delete_many({})
     await asyncio.sleep(7)
     await event.delete()
     await yo.delete()
@@ -732,19 +737,22 @@ async def pencode(message):
         x = dtime
         xx = ts(int((ees - es).seconds) * 1000)
         xxx = ts(int((eees - ees).seconds) * 1000)
-        a1 = await info(dl, e)
-        a2 = await info(out, e)
-        text = ""
-        if rlsgrp:
+        try:
+         a1 = await info(dl, e)
+         a2 = await info(out, e)
+         text = ""
+         if rlsgrp:
             text += f"**Source:** `[{rlsgrp}]`"
-        text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
-        dp = await ds.reply(
+         text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
+         dp = await ds.reply(
             text,
             disable_web_page_preview=True,
             quote=True,
         )
-        if LOG_CHANNEL:
+         if LOG_CHANNEL:
             await dp.copy(chat_id=chat)
+        except Exception:
+          pass
         dk = await ds.reply(
             f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nEncoded Size : {hbs(com)}\nEncoded Percentage : {per}\n\nDownloaded in {x}\nEncoded in {xx}\nUploaded in {xxx}",
             disable_web_page_preview=True,

@@ -53,19 +53,20 @@ if not os.path.isdir("encode/"):
 if not os.path.isdir("thumb/"):
     os.mkdir("thumb/")
 
-cluster = MongoClient(DATABASE_URL)
-db = cluster[DBNAME]
-queue = db["queue"]
-ffmpegdb = db["code"]
-filterz = db["filter"]
-queries = queue.find({})
-for query in queries:
+if DATABASE_URL:
+ cluster = MongoClient(DATABASE_URL)
+  db = cluster[DBNAME]
+ queue = db["queue"]
+ ffmpegdb = db["code"]
+ filterz = db["filter"]
+ queries = queue.find({})
+ for query in queries:
     que = str(query["queue"])
     io = StringIO(que)
     pre = json.load(io)
     QUEUE.update(pre)
-queries = ffmpegdb.find({})
-for query in queries:
+ queries = ffmpegdb.find({})
+ for query in queries:
     que = query["queue"]
     que = que[0]
     io = StringIO(que)
@@ -76,8 +77,8 @@ for query in queries:
         file = open("ffmpeg.txt", "w")
         file.write(str(pre) + "\n")
         file.close()
-queries = filterz.find({})
-for query in queries:
+ queries = filterz.find({})
+ for query in queries:
     que = query["queue"]
     que = que[0]
     io = StringIO(que)
