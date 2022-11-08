@@ -90,9 +90,8 @@ if DATABASE_URL:
             file.write(str(pre) + "\n")
             file.close()
 else:
-  ffmpegdb = ''
-  filterz = ''
-
+    ffmpegdb = ""
+    filterz = ""
 
 
 def stdr(seconds: int) -> str:

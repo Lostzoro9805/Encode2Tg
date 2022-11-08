@@ -147,6 +147,7 @@ async def listqueue(event):
     await event.delete()
     await yo.delete()
 
+
 async def listqueuep(event):
     if str(event.sender_id) not in OWNER:
         return await event.delete()
@@ -157,9 +158,9 @@ async def listqueuep(event):
         return await event.delete()
     try:
         if WORKING:
-          i = 0
+            i = 0
         else:
-          i = 1
+            i = 1
         x = ""
         while i < len(QUEUE):
             y, yy = QUEUE[list(QUEUE.keys())[i]]
