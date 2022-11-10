@@ -321,8 +321,11 @@ async def something():
                             os.remove(dl)
                         except Exception:
                             await nnn.reply("**Reason:** Download Cancelled!")
-                        await wak.delete()
-                        await nn.delete()
+                        try:
+                            await nn.delete()
+                            await wak.delete()
+                        except Exception:
+                            pass
                         QUEUE.pop(list(QUEUE.keys())[0])
                         await save2db()
                         continue
@@ -332,8 +335,11 @@ async def something():
                     LOGS.info(stderr.decode)
                 ees = dt.now()
                 time.time()
-                await nn.delete()
-                await wak.delete()
+                try:
+                    await nn.delete()
+                    await wak.delete()
+                except Exception:
+                    pass
                 tex = "`▲ Uploading ▲`"
                 nnn = await app.send_message(chat_id=e.chat_id, text=tex)
                 fname = out.split("/")[1]

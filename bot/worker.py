@@ -639,7 +639,6 @@ async def pencode(message):
             ffmpeg = nano
         dtime = ts(int((es - s).seconds) * 1000)
         e = xxx
-        p = op
         hehe = f"{out};{dl};0"
         wah = code(hehe)
         user = message.from_user.id
@@ -708,7 +707,7 @@ async def pencode(message):
                 log,
                 f"Encoding Of #{qb} Started By [{message.from_user.first_name}](tg://user?id={message.from_user.id})",
             )
-            wak = await p.edit(
+            wak = await op.edit(
                 f"[{message.from_user.first_name}](tg://user?id={message.from_user.id}) `Is Currently Encoding A Video…`",
                 buttons=[
                     [Button.inline("ℹ️", data=f"pres{wah}")],
@@ -743,7 +742,8 @@ async def pencode(message):
                 except Exception:
                     await wrror.reply("**Reason:** Download Cancelled!")
                 await xxx.edit(f"🔺 **Encoding of** `{bb2}` **Failed**")
-                await wak.delete()
+                if LOG_CHANNEL:
+                    await wak.delete()
                 return await nn.delete()
         except BaseException:
             er = traceback.format_exc()
@@ -751,8 +751,11 @@ async def pencode(message):
             LOGS.info(stderr.decode)
         ees = dt.now()
         ttt = time.time()
-        await nn.delete()
-        await wak.delete()
+        try:
+            await nn.delete()
+            await wak.delete()
+        except Exception:
+            pass
         nnn = await xxx.edit("`▲ Uploading ▲`")
         fname = out.split("/")[1]
         pcap = await custcap(name, fname)
