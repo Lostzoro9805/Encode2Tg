@@ -6,7 +6,7 @@
 ---
 Compulsory Variables | Explanation
 :--------- | :---------------------------------------------
-`APP_ID` `API_HASH` `BOT_TOKEN` | get the first two from [Telegram.org](telegram.org) and the third from [@Botfather](t.me/botfather)
+`APP_ID` `API_HASH` `BOT_TOKEN` | get the first two from *[Telegram.org](https://telegram.org)* and the third from *[@Botfather](https://t.me/botfather)*
 `OWNER`    | input id Of allowed users with a space between each
 
 Optional Variables | Explanation
