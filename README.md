@@ -27,6 +27,8 @@ bash - /bash + command
 eval - Evaluate code
 peval - same as eval but with pyrogram 
 ping - Ping!
+queue - List queue
+encodequeue - List queue (parsed)
 fix - Turn V2 On (With Message) or Off
 get - Get Current ffmpeg code
 set - Set custom ffmpeg code
