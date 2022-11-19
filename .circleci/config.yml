@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          apt -qq update && apt -qq install -y git wget pv jq python3-dev mediainfo && pip3 install -r requirements.txt && bash run.sh
+          apt -qq update && apt -qq install -y git wget pv python3-pip jq python3-dev mediainfo && pip3 install -r requirements.txt && bash run.sh
 
 workflows:
   my-custom-workflow:
