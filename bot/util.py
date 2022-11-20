@@ -23,20 +23,22 @@ def get_readable_file_size(size_in_bytes) -> str:
         return "File too large"
 
 
-wname = Path("Namefilter.txt")
-wrelease = Path("Releasefilter.txt")
-if wname.is_file():
-    with open("Namefilter.txt", "r") as file:
-        wnamer = file.read().strip()
-        file.close()
-else:
-    wnamer = ""
-if wrelease.is_file():
-    with open("Releasefilter.txt", "r") as file:
-        wreleaser = file.read().strip()
-        file.close()
-else:
-    wreleaser = ""
+async def wfilter():
+    wname = Path("Namefilter.txt")
+    wrelease = Path("Releasefilter.txt")
+    if wname.is_file():
+        with open("Namefilter.txt", "r") as file:
+            wnamer = file.read().strip()
+            file.close()
+    else:
+        wnamer = ""
+    if wrelease.is_file():
+        with open("Releasefilter.txt", "r") as file:
+            wreleaser = file.read().strip()
+            file.close()
+    else:
+        wreleaser = ""
+    return wnamer, wreleaser
 
 
 url = "https://graphql.anilist.co"
@@ -172,6 +174,10 @@ async def parse(name, kk, aa):
         if b is None:
             raise Exception("Parsing Failed")
         cb2 = "[ANi-MiNE]"
+        wnamer, wreleaser = await wfilter()
+        with open("ffmpeg.txt", "r") as file:
+            nani = file.read().rstrip()
+            file.close()
         con = ""
         olif = Path("filter.txt")
         if olif.is_file():
@@ -210,6 +216,8 @@ async def parse(name, kk, aa):
                 bb += f" [{fil2}]"
             bb2 = bb.replace(cb, b)
             bb2 = bb2.replace("[A-M]", cb2)
+            if "1080" in nani:
+                bb2 += " | [1080p]"
             bb += ".mkv"
         else:
             variables = {"search": b, "type": "ANIME"}
@@ -272,6 +280,8 @@ async def parse(name, kk, aa):
                 bb += f" [{col}]"
             bb2 = bb.replace(cb, b)
             bb2 = bb2.replace("[A-M]", cb2)
+            if "1080" in nani:
+                bb2 += " | [1080p]"
             bb += ".mkv"
     except Exception as er:
         LOGS.info(er)
@@ -317,6 +327,10 @@ async def custcap(name, fname):
         oi, z, y, e, fil2, fil3, s, st = await parser(name)
         if oi is None:
             raise Exception("Parsing Failed")
+        with open("ffmpeg.txt", "r") as file:
+            nani = file.read().rstrip()
+            file.close()
+        wnamer, wreleaser = await wfilter()
         try:
             fil3t = ""
             if wreleaser:
@@ -389,6 +403,8 @@ async def custcap(name, fname):
             caption += "\n"
         if st:
             caption += f"**◉ Episode Title:** `{st}`\n"
+        if "1080" in nani:
+            caption += "**◉ 🌟:** `[1080p] [AV1]`\n"
         caption += "**🔗 @ANi_MiNE**"
     except Exception:
         om = fname.split(".")[0]
