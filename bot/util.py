@@ -24,21 +24,22 @@ def get_readable_file_size(size_in_bytes) -> str:
 
 
 async def wfilter():
-  wname = Path("Namefilter.txt")
-  wrelease = Path("Releasefilter.txt")
-  if wname.is_file():
-    with open("Namefilter.txt", "r") as file:
-        wnamer = file.read().strip()
-        file.close()
-  else:
-    wnamer = ""
-  if wrelease.is_file():
-    with open("Releasefilter.txt", "r") as file:
-        wreleaser = file.read().strip()
-        file.close()
-  else:
-    wreleaser = ""
-  return wnamer, wreleaser
+    wname = Path("Namefilter.txt")
+    wrelease = Path("Releasefilter.txt")
+    if wname.is_file():
+        with open("Namefilter.txt", "r") as file:
+            wnamer = file.read().strip()
+            file.close()
+    else:
+        wnamer = ""
+    if wrelease.is_file():
+        with open("Releasefilter.txt", "r") as file:
+            wreleaser = file.read().strip()
+            file.close()
+    else:
+        wreleaser = ""
+    return wnamer, wreleaser
+
 
 url = "https://graphql.anilist.co"
 anime_query = """
@@ -216,7 +217,7 @@ async def parse(name, kk, aa):
             bb2 = bb.replace(cb, b)
             bb2 = bb2.replace("[A-M]", cb2)
             if "1080" in nani:
-              bb2 += " | [1080p]"
+                bb2 += " | [1080p]"
             bb += ".mkv"
         else:
             variables = {"search": b, "type": "ANIME"}
@@ -280,7 +281,7 @@ async def parse(name, kk, aa):
             bb2 = bb.replace(cb, b)
             bb2 = bb2.replace("[A-M]", cb2)
             if "1080" in nani:
-              bb2 += " | [1080p]"
+                bb2 += " | [1080p]"
             bb += ".mkv"
     except Exception as er:
         LOGS.info(er)
