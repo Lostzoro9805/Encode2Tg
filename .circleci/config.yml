@@ -15,9 +15,9 @@ jobs:
     steps:
       - checkout
       - run: 
-        name: running test
-        command: apt -qq update && apt -qq install -y git wget pv python3-pip jq python3-dev mediainfo && pip3 install -r requirements.txt && bash run.sh
-        no_output_timeout: 1.5h
+          name: running test
+          command: apt -qq update && apt -qq install -y git wget pv python3-pip jq python3-dev mediainfo && pip3 install -r requirements.txt && bash run.sh
+          no_output_timeout: 1.5h
     resource_class: large
 
 workflows:
