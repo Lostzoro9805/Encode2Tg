@@ -8,16 +8,17 @@ executors:
           # visit app.circleci.com/settings/project/github/Niffy-the-conqueror/Encode2Tg/environment-variables
           username: $DOCKER_HUB_USER
           password: $DOCKER_HUB_PASSWORD
-        resource_class: large
 jobs:
   my-job-name:
 
     executor: my-custom-executor
     steps:
       - checkout
-      - run: |
+      - run:
+        command: |
           apt -qq update && apt -qq install -y git wget pv python3-pip jq python3-dev mediainfo && pip3 install -r requirements.txt && bash run.sh
-    no_output_timeout: 1.5h
+        no_output_timeout: 1.5h
+    resource_class: large
 
 workflows:
   my-custom-workflow:
