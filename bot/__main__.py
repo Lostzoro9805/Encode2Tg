@@ -161,16 +161,6 @@ async def _(e):
     await change(e)
 
 
-@bot.on(events.NewMessage(pattern="/queue"))
-async def _(e):
-    await listqueue(e)
-
-
-@bot.on(events.NewMessage(pattern="/encodequeue"))
-async def _(e):
-    await listqueuep(e)
-
-
 @bot.on(events.NewMessage(pattern="/groupenc"))
 async def _(e):
     await allowgroupenc(e)
@@ -275,8 +265,10 @@ async def something():
                 hehe = f"{out};{dl};{list(QUEUE.keys())[0]}"
                 wah = code(hehe)
                 nn = await e.edit(
-                    "`Encoding Files…` \n**⏳**\n `data=f"stats{wah}`,
+                    "`Encoding Files…` \n**⏳This Might Take A While⏳**",
                     buttons=[
+                        [Button.inline("📂", data=f"pres{wah}")],
+                        [Button.inline("STATS", data=f"stats{wah}")],
                         [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
                     ],
                 )
@@ -319,11 +311,8 @@ async def something():
                             os.remove(dl)
                         except Exception:
                             await nnn.reply("**Reason:** Download Cancelled!")
-                        try:
-                            await nn.delete()
-                            await wak.delete()
-                        except Exception:
-                            pass
+                        await wak.delete()
+                        await nn.delete()
                         QUEUE.pop(list(QUEUE.keys())[0])
                         await save2db()
                         continue
@@ -333,11 +322,8 @@ async def something():
                     LOGS.info(stderr.decode)
                 ees = dt.now()
                 time.time()
-                try:
-                    await nn.delete()
-                    await wak.delete()
-                except Exception:
-                    pass
+                await nn.delete()
+                await wak.delete()
                 tex = "`▲ Uploading ▲`"
                 nnn = await app.send_message(chat_id=e.chat_id, text=tex)
                 fname = out.split("/")[1]
@@ -355,24 +341,21 @@ async def something():
                 x = dtime
                 xx = ts(int((ees - es).seconds) * 1000)
                 xxx = ts(int((eees - ees).seconds) * 1000)
-                try:
-                    a1 = await info(dl, e)
-                    a2 = await info(out, e)
-                    text = ""
-                    if rlsgrp:
-                        text += f"**Source:** `[{rlsgrp}]`"
-                    text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
-                    dp = await ds.reply(
-                        text,
-                        disable_web_page_preview=True,
-                        quote=True,
-                    )
-                    if LOG_CHANNEL:
-                        await dp.copy(chat_id=chat)
-                except Exception:
-                    pass
+                a1 = await info(dl, e)
+                a2 = await info(out, e)
+                text = ""
+                if rlsgrp:
+                    text += f"**Source:** `[{rlsgrp}]`"
+                text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
+                dp = await ds.reply(
+                    text,
+                    disable_web_page_preview=True,
+                    quote=True,
+                )
+                if LOG_CHANNEL:
+                    await dp.copy(chat_id=chat)
                 dk = await ds.reply(
-                    f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nEncoded Size : {hbs(com)}\nEncoded Percentage : {per}\n\nDownloaded in {x}\nEncoded in {xx}\nUploaded in {xxx}",
+                    f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nCompressed Size : {hbs(com)}\nCompressed Percentage : {per}\n\nDownloaded in {x}\nCompressed in {xx}\nUploaded in {xxx}",
                     disable_web_page_preview=True,
                     quote=True,
                 )
