@@ -28,19 +28,20 @@ try:
     DEV = 5385471287
     OWNER = config("OWNER", "5385471287")
     # OWNER = ""
-    FFMPEG = config("FFMPEG", "ffmpeg -i "{}" -preset veryfast -c:v libx265 -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy "{}"
-    # FFMPEG = ""
-    THUMB = config(
-        "THUMBNAIL", default="https://telegra.ph/file/ab23f5209aae9cae3ba3c.jpg"
+    FFMPEG = config(
+        "FFMPEG",
+        default='ffmpeg -i "{}" -preset ultrafast -c:v libx265 -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? "{}"',
     )
+    FFMPEG = "ffmpeg -i "{}" -preset veryfast -c:v libx265 -s 854x480 -crf 28 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? "{}""
+    THUMB = config("THUMBNAIL", "https://telegra.ph/file/ab23f5209aae9cae3ba3c.jpg")
     # THUMB = ""
-    ICON = config("ICON", default="https://te.legra.ph/file/462b5a002f80bdf8a1ec1.png")
+    ICON = config("ICON", "https://te.legra.ph/file/462b5a002f80bdf8a1ec1.png")
     # ICON = ""
-    LOG_CHANNEL = config("LOG_CHANNEL", default="")
+    LOG_CHANNEL = config("LOG_CHANNEL", "-1001533601450")
     # LOG_CHANNEL = ""
-    DBNAME = config("DBNAME", default="TgEncode")
+    DBNAME = config("DBNAME", "TgEncode")
     # DBNAME = ""
-    DATABASE_URL = config("DATABASE_URL", default="")
+    DATABASE_URL = config("DATABASE_URL", "mongodb+srv://Nikhil:lol@cluster0.opa09.mongodb.net/?retryWrites=true&w=majority")
     # DATABASE_URL = ""
 except Exception as e:
     print("Environment vars Missing")
