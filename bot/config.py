@@ -28,8 +28,8 @@ try:
     DEV = 5385471287
     OWNER = config("OWNER", "5385471287")
     # OWNER = ""
-    FFMPEG = config("FFMPEG","")
-    FFMPEG = ffmpeg -i "{}" -preset veryfast -c:v libx265 -s 854x480 -crf 28 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? "{}"
+    FFMPEG = config("FFMPEG","ffmpeg -i "{}" -preset veryfast -c:v libx265 -s 854x480 -crf 28 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? "{}"")
+    #FFMPEG = 
     THUMB = config("THUMBNAIL", "https://telegra.ph/file/ab23f5209aae9cae3ba3c.jpg")
     # THUMB = ""
     ICON = config("ICON", "https://te.legra.ph/file/462b5a002f80bdf8a1ec1.png")
