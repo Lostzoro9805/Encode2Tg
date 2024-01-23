@@ -599,51 +599,14 @@ async def pencode(message):
         kk = dl.split("/")[-1]
         aa = kk.split(".")[-1]
         rr = f"encode"
-        namo = dl.split("/")[1]
-        if "v2" in namo:
-            name = namo.replace("v2", "")
-        else:
-            name = namo
-        bb1 = await parse(name, kk, aa)
-        bb = bb1[0]
-        bb2 = bb1[1]
-        # if "'" in bb:
-        # bb = bb.replace("'", "")
+        bb = kk.replace(f".{aa}", " compressed.mkv")
         out = f"{rr}/{bb}"
-        b, d, rlsgrp = await dynamicthumb(name, kk, aa)
-        tbcheck = Path("thumb2.jpg")
-        if tbcheck.is_file():
-            thum = "thumb2.jpg"
-        else:
-            thum = "thumb.jpg"
-        with open("ffmpeg.txt", "r") as file:
-            nani = file.read().rstrip()
-            # ffmpeg = file.read().rstrip()
-            file.close()
-        try:
-            if "This Episode" in nani:
-                b = b.replace("'", "")
-                b = b.replace(":", "\\:")
-                bo = b
-                if d:
-                    bo = f"Episode {d} of {b}"
-                nano = nani.replace(f"This Episode", bo)
-            else:
-                nano = nani
-        except Exception:
-            nano = nani
-        if "Fileinfo" in nano:
-            # bb = bb.replace("'", "")
-            ffmpeg = nano.replace(f"Fileinfo", bb2)
-        else:
-            ffmpeg = nano
+        thum = "thumb.jpg"
         dtime = ts(int((es - s).seconds) * 1000)
         e = xxx
         hehe = f"{out};{dl};0"
         wah = code(hehe)
-        user = message.from_user.id
-        xxx = await xxx.edit("`Waiting For Encoding To Complete`")
-        nn = await bot.send_message(
+        nn = await e.edit(
             user,
             "`Encoding File(s)…` \n**⏳This Might Take A While⏳**",
             buttons=[
@@ -715,7 +678,7 @@ async def pencode(message):
                     [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
                 ],
             )
-        cmd = ffmpeg.format(dl, out)
+        cmd = FFMPEG.format(dl, out)
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -757,9 +720,6 @@ async def pencode(message):
         except Exception:
             pass
         nnn = await xxx.edit("`▲ Uploading ▲`")
-        fname = out.split("/")[1]
-        pcap = await custcap(name, fname)
-        ds = await upload2(app, message.from_user.id, out, nnn, thum, pcap)
         await nnn.delete()
         if LOG_CHANNEL:
             chat = int(LOG_CHANNEL)
