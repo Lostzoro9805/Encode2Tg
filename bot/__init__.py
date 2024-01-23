@@ -38,7 +38,6 @@ from pathlib import Path
 import aiohttp
 import psutil
 from html_telegraph_poster import TelegraphPoster
-from pyrogram import Client
 from telethon import Button, TelegramClient, errors, events, functions, types
 from telethon.sessions import StringSession
 from telethon.utils import pack_bot_file_id
@@ -70,11 +69,6 @@ try:
 except Exception:
     LOG_CHANNEL = ""
 
-try:
-    bot = TelegramClient(None, APP_ID, API_HASH)
-    app = Client(
-        "Encoder", api_id=APP_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, workers=2
-    )
 except Exception as e:
     LOGS.info("Environment vars are missing! Kindly recheck.")
     LOGS.info("Bot is quiting...")
