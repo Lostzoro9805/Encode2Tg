@@ -177,7 +177,7 @@ async def something():
                     log = int(LOG_CHANNEL)
                     op = await bot.send_message(
                         log,
-                        f"[{sender.first_name}](tg://user?id={user}) `Currently Downloading A Queued Video…`",
+                        f"`Currently Downloading A Queued Video…`",
                     )
                 s = dt.now()
                 try:
