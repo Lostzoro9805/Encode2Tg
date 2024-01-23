@@ -317,7 +317,7 @@ async def something():
                 nnn = await app.send_message(chat_id=e.chat_id, text=tex)
                 fname = out.split("/")[1]
                 pcap = await custcap(name, fname)
-                ds = await upload2(app, e.chat_id, out, nnn, thum, pcap)
+                ds = await upload2(app, e.chat_id, out, nnn, thum)
                 await nnn.delete()
                 if LOG_CHANNEL:
                     chat = int(LOG_CHANNEL)
