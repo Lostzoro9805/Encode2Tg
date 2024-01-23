@@ -14,8 +14,6 @@
 # <https://github.com/1Danish-00/CompressorQueue/blob/main/License> .
 
 
-from pyrogram import filters
-
 from . import *
 from .devtools import *
 
@@ -106,11 +104,6 @@ async def _(e):
     await eval(e)
 
 
-@app.on_message(filters.incoming & filters.command(["peval"]))
-async def _(app, message):
-    await eval_message_p(app, message)
-
-
 @bot.on(events.NewMessage(pattern="/bash"))
 async def _(e):
     await bash(e)
@@ -124,26 +117,6 @@ async def _(e):
 @bot.on(events.NewMessage(pattern="/parse"))
 async def _(e):
     await discap(e)
-
-
-@bot.on(events.NewMessage(pattern="/fix"))
-async def _(e):
-    await version2(e)
-
-
-@bot.on(events.NewMessage(pattern="/filter"))
-async def _(e):
-    await filter(e)
-
-
-@bot.on(events.NewMessage(pattern="/vfilter"))
-async def _(e):
-    await vfilter(e)
-
-
-@bot.on(events.NewMessage(pattern="/delfilter"))
-async def _(e):
-    await rmfilter(e)
 
 
 @bot.on(events.NewMessage(pattern="/reset"))
