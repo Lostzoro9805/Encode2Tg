@@ -94,7 +94,7 @@ async def clean(event):
     return
 
 
-async def upload2(bot, from_user_id, filepath, reply, thum, caption):
+async def upload2(bot, from_user_id, filepath, reply, thum):
     await reply.edit("🔺Uploading🔺")
     u_start = time.time()
     s = await bot.send_document(
@@ -102,7 +102,6 @@ async def upload2(bot, from_user_id, filepath, reply, thum, caption):
         chat_id=from_user_id,
         force_document=True,
         thumb=thum,
-        caption=caption,
         progress=progress_for_pyrogram,
         progress_args=(bot, "Uploading 👘", reply, u_start),
     )
