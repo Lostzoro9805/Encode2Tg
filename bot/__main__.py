@@ -173,7 +173,6 @@ async def something():
                 file = list(QUEUE.keys())[0]
                 name, user = QUEUE[list(QUEUE.keys())[0]]
                 e = await bot.send_message(user, "`▼ Downloding Queue Files ▼`")
-                sender = await app.get_users(user)
                 if LOG_CHANNEL:
                     log = int(LOG_CHANNEL)
                     op = await bot.send_message(
