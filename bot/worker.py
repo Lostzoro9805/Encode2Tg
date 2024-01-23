@@ -21,7 +21,7 @@ import psutil
 
 from .funcn import *
 from .FastTelethon import upload_file
-from .util import get_readable_file_size, parse
+from .util import get_readable_file_size
 from .worker import *
 
 
