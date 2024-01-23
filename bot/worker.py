@@ -20,7 +20,7 @@ from pathlib import Path
 import psutil
 
 from .funcn import *
-from .util import custcap, dynamicthumb, get_readable_file_size, parse
+from .util import get_readable_file_size, parse
 from .worker import *
 
 
