@@ -16,7 +16,7 @@
 import shutil
 import time
 from pathlib import Path
-
+from .FastTelethon import upload_file
 import psutil
 
 from .funcn import *
