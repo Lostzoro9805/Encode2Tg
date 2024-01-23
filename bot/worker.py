@@ -599,7 +599,7 @@ async def pencode(message):
         kk = dl.split("/")[-1]
         aa = kk.split(".")[-1]
         rr = f"encode"
-        bb = kk.replace(f".{aa}", " [Encoded].mkv")
+        bb = kk.replace(f".{aa}", " compressed.mkv")
         out = f"{rr}/{bb}"
         thum = "thumb.jpg"
         dtime = ts(int((es - s).seconds) * 1000)
@@ -607,7 +607,8 @@ async def pencode(message):
         hehe = f"{out};{dl};0"
         wah = code(hehe)
         nn = await e.edit(
-            "`Encoding File(s)…`",
+            user,
+            "`Encoding File(s)…` \n**⏳This Might Take A While⏳**",
             buttons=[
                 [Button.inline("📂", data=f"pres{wah}")],
                 [Button.inline("STATS", data=f"stats{wah}")],
@@ -677,7 +678,7 @@ async def pencode(message):
                     [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
                 ],
             )
-        cmd = FFMPEG.format(dl, out)
+        cmd = ffmpeg.format(dl, out)
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -719,6 +720,9 @@ async def pencode(message):
         except Exception:
             pass
         nnn = await xxx.edit("`▲ Uploading ▲`")
+        fname = out.split("/")[1]
+        pcap = await custcap(name, fname)
+        ds = await upload2(app, message.from_user.id, out, nnn, thum, pcap)
         await nnn.delete()
         if LOG_CHANNEL:
             chat = int(LOG_CHANNEL)
