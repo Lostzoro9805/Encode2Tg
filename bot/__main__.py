@@ -166,12 +166,6 @@ async def _(e):
 async def _(e):
     await encod(e)
 
-
-@app.on_message(filters.incoming & (filters.video | filters.document))
-async def _(app, message):
-    await pencode(message)
-
-
 async def something():
     for i in itertools.count():
         try:
