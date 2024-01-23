@@ -691,19 +691,14 @@ async def pencode(message):
         except Exception:
             pass
         nnn = await xxx.edit("`▲ Uploading ▲`")
-        with open(out, "rb") as f:
-            ok = await upload_file(
-                client=e.client,
-                file=f,
-                name=out,
-                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                    progress(d, t, nnn, ttt, "uploading..")
-                ),
-            )
-        fname = out.split("/")[1]
-        ds = await e.client.send_file(
-            e.chat_id, file=ok, force_document=True, thumb=thum, caption=f"`{fname}`"
-        )
+        upload = await app.send_document(
+                message=message
+                chat_id=update.chat.id,
+                document=o,
+                force_document=True,
+                reply_to_message_id=update.message_id,
+                progress=progress_for_pyrogram
+                progress_args=(app, "`Uploding…`", nnn, upload),
         await nnn.delete()
         
         if LOG_CHANNEL:
