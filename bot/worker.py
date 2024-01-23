@@ -723,7 +723,6 @@ async def pencode(message):
             pass
         nnn = await xxx.edit("`▲ Uploading ▲`")
         fname = out.split("/")[1]
-        ds = await upload2(app, message.from_user.id, out, nnn, thum)
         await nnn.delete()
         if LOG_CHANNEL:
             chat = int(LOG_CHANNEL)
