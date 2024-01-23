@@ -220,47 +220,11 @@ async def something():
                     await save2db()
                 es = dt.now()
                 kk = dl.split("/")[-1]
-                if "[" in kk and "]" in kk:
-                    pp = kk.split("[")[0]
-                    qq = kk.split("]")[1]
-                    kk = pp + qq
-                else:
-                    kk = kk
                 aa = kk.split(".")[-1]
                 rr = "encode"
-                namo = dl.split("/")[1]
-                if "v2" in namo:
-                    name = namo.replace("v2", "")
-                else:
-                    name = namo
-                bb, bb2 = await parse(name, kk, aa)
+                bb = kk.replace(f".{aa}", " Encoded.mkv")
                 out = f"{rr}/{bb}"
-                b, d, rlsgrp = await dynamicthumb(name, kk, aa)
-                tbcheck = Path("thumb2.jpg")
-                if tbcheck.is_file():
-                    thum = "thumb2.jpg"
-                else:
-                    thum = "thumb.jpg"
-                with open("ffmpeg.txt", "r") as file:
-                    # ffmpeg = file.read().rstrip()
-                    nani = file.read().rstrip()
-                    file.close()
-                try:
-                    if "This Episode" in nani:
-                        b = b.replace("'", "")
-                        b = b.replace(":", "\\:")
-                        bo = b
-                        if d:
-                            bo = f"Episode {d} of {b}"
-                        nano = nani.replace(f"This Episode", bo)
-                    else:
-                        nano = nani
-                except NameError:
-                    nano = nani
-                if "Fileinfo" in nano:
-                    ffmpeg = nano.replace(f"Fileinfo", bb2)
-                else:
-                    ffmpeg = nano
+                thum = "thumb.jpg"
                 dtime = ts(int((es - s).seconds) * 1000)
                 hehe = f"{out};{dl};{list(QUEUE.keys())[0]}"
                 wah = code(hehe)
