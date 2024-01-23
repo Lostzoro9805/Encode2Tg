@@ -607,7 +607,6 @@ async def pencode(message):
         hehe = f"{out};{dl};0"
         wah = code(hehe)
         nn = await e.edit(
-            user,
             "`Encoding File(s)…` \n**⏳This Might Take A While⏳**",
             buttons=[
                 [Button.inline("📂", data=f"pres{wah}")],
