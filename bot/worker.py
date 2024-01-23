@@ -16,7 +16,7 @@
 import shutil
 import time
 from pathlib import Path
-from .FastTelethon import upload_file
+
 import psutil
 
 from .funcn import *
@@ -42,6 +42,37 @@ async def save2db2(mara, para):
         y = json.dumps(para)
         mara.delete_many({})
         mara.insert_one({"queue": [y, "0"]})
+
+
+async def version2(event):
+    if str(event.sender_id) not in OWNER:
+        return await event.delete()
+    temp = ""
+    try:
+        temp = event.text.split(" ", maxsplit=1)[1]
+    except Exception:
+        pass
+    if temp:
+        VERSION2.clear()
+        VERSION2.append(temp)
+        await event.reply(f"**Added V2 Tag Successfully!\nV2 Reason:** `{temp}`")
+    else:
+        VERSION2.clear()
+        await event.reply("**Removed V2 Tag Successfully!**")
+
+
+async def discap(event):
+    if str(event.sender_id) not in OWNER:
+        return await event.delete()
+    ttx = Path("cap.txt")
+    if ttx.is_file():
+        os.remove(ttx)
+        await event.reply("**Successfully Enabled Parse By Caption**")
+    else:
+        file = open(ttx, "w")
+        file.close()
+        await event.reply("**Successfully Disabled Parse By Caption**")
+
 
 async def clean(event):
     if str(event.sender_id) not in OWNER and event.sender_id != DEV:
@@ -568,9 +599,44 @@ async def pencode(message):
         kk = dl.split("/")[-1]
         aa = kk.split(".")[-1]
         rr = f"encode"
-        bb = kk.replace(f".{aa}", " Encoded.mkv")
+        namo = dl.split("/")[1]
+        if "v2" in namo:
+            name = namo.replace("v2", "")
+        else:
+            name = namo
+        bb1 = await parse(name, kk, aa)
+        bb = bb1[0]
+        bb2 = bb1[1]
+        # if "'" in bb:
+        # bb = bb.replace("'", "")
         out = f"{rr}/{bb}"
-        thum = "thumb.jpg"
+        b, d, rlsgrp = await dynamicthumb(name, kk, aa)
+        tbcheck = Path("thumb2.jpg")
+        if tbcheck.is_file():
+            thum = "thumb2.jpg"
+        else:
+            thum = "thumb.jpg"
+        with open("ffmpeg.txt", "r") as file:
+            nani = file.read().rstrip()
+            # ffmpeg = file.read().rstrip()
+            file.close()
+        try:
+            if "This Episode" in nani:
+                b = b.replace("'", "")
+                b = b.replace(":", "\\:")
+                bo = b
+                if d:
+                    bo = f"Episode {d} of {b}"
+                nano = nani.replace(f"This Episode", bo)
+            else:
+                nano = nani
+        except Exception:
+            nano = nani
+        if "Fileinfo" in nano:
+            # bb = bb.replace("'", "")
+            ffmpeg = nano.replace(f"Fileinfo", bb2)
+        else:
+            ffmpeg = nano
         dtime = ts(int((es - s).seconds) * 1000)
         e = xxx
         hehe = f"{out};{dl};0"
@@ -649,7 +715,7 @@ async def pencode(message):
                     [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
                 ],
             )
-        cmd = FFMPEG.format(dl, out)
+        cmd = ffmpeg.format(dl, out)
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -695,7 +761,6 @@ async def pencode(message):
         pcap = await custcap(name, fname)
         ds = await upload2(app, message.from_user.id, out, nnn, thum, pcap)
         await nnn.delete()
-        
         if LOG_CHANNEL:
             chat = int(LOG_CHANNEL)
             await ds.copy(chat_id=chat)
