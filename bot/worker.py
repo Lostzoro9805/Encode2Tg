@@ -723,6 +723,13 @@ async def pencode(message):
             pass
         nnn = await xxx.edit("`▲ Uploading ▲`")
         fname = out.split("/")[1]
+        ok = await upload_file(
+            file=f,
+            name=out,
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, nnn, ttt, "uploading..")
+            ),
+         )   
         await nnn.delete()
         if LOG_CHANNEL:
             chat = int(LOG_CHANNEL)
