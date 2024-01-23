@@ -693,8 +693,6 @@ async def pencode(message):
         nnn = await xxx.edit("`▲ Uploading ▲`")
         upload = await app.send_document(
                 message=message
-                document=o,
-                force_document=True,
                 progress=progress_for_pyrogram
                 progress_args=(app, "`Uploding…`", nnn, upload),
         await nnn.delete()
