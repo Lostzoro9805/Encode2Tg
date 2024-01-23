@@ -20,7 +20,7 @@ from pathlib import Path
 import psutil
 
 from .funcn import *
-from .util import get_readable_file_size, parse
+from .util import get_readable_file_size
 from .worker import *
 
 
@@ -42,37 +42,6 @@ async def save2db2(mara, para):
         y = json.dumps(para)
         mara.delete_many({})
         mara.insert_one({"queue": [y, "0"]})
-
-
-async def version2(event):
-    if str(event.sender_id) not in OWNER:
-        return await event.delete()
-    temp = ""
-    try:
-        temp = event.text.split(" ", maxsplit=1)[1]
-    except Exception:
-        pass
-    if temp:
-        VERSION2.clear()
-        VERSION2.append(temp)
-        await event.reply(f"**Added V2 Tag Successfully!\nV2 Reason:** `{temp}`")
-    else:
-        VERSION2.clear()
-        await event.reply("**Removed V2 Tag Successfully!**")
-
-
-async def discap(event):
-    if str(event.sender_id) not in OWNER:
-        return await event.delete()
-    ttx = Path("cap.txt")
-    if ttx.is_file():
-        os.remove(ttx)
-        await event.reply("**Successfully Enabled Parse By Caption**")
-    else:
-        file = open(ttx, "w")
-        file.close()
-        await event.reply("**Successfully Disabled Parse By Caption**")
-
 
 async def clean(event):
     if str(event.sender_id) not in OWNER and event.sender_id != DEV:
