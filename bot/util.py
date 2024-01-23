@@ -20,3 +20,7 @@ def get_readable_file_size(size_in_bytes) -> str:
         return f"{round(size_in_bytes, 2)}{SIZE_UNITS[index]}"
     except IndexError:
         return "File too large"
+
+async def custcap(name, fname):
+    caption = f"**{ot}**\n**✨Encoded By @DenjiXD17**"
+    return caption
