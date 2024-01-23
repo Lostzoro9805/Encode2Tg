@@ -161,6 +161,16 @@ async def _(e):
     await change(e)
 
 
+@bot.on(events.NewMessage(pattern="/queue"))
+async def _(e):
+    await listqueue(e)
+
+
+@bot.on(events.NewMessage(pattern="/encodequeue"))
+async def _(e):
+    await listqueuep(e)
+
+
 @bot.on(events.NewMessage(pattern="/groupenc"))
 async def _(e):
     await allowgroupenc(e)
@@ -220,11 +230,47 @@ async def something():
                     await save2db()
                 es = dt.now()
                 kk = dl.split("/")[-1]
+                if "[" in kk and "]" in kk:
+                    pp = kk.split("[")[0]
+                    qq = kk.split("]")[1]
+                    kk = pp + qq
+                else:
+                    kk = kk
                 aa = kk.split(".")[-1]
                 rr = "encode"
-                bb = kk.replace(f".{aa}", " Encoded.mkv")
+                namo = dl.split("/")[1]
+                if "v2" in namo:
+                    name = namo.replace("v2", "")
+                else:
+                    name = namo
+                bb, bb2 = await parse(name, kk, aa)
                 out = f"{rr}/{bb}"
-                thum = "thumb.jpg"
+                b, d, rlsgrp = await dynamicthumb(name, kk, aa)
+                tbcheck = Path("thumb2.jpg")
+                if tbcheck.is_file():
+                    thum = "thumb2.jpg"
+                else:
+                    thum = "thumb.jpg"
+                with open("ffmpeg.txt", "r") as file:
+                    # ffmpeg = file.read().rstrip()
+                    nani = file.read().rstrip()
+                    file.close()
+                try:
+                    if "This Episode" in nani:
+                        b = b.replace("'", "")
+                        b = b.replace(":", "\\:")
+                        bo = b
+                        if d:
+                            bo = f"Episode {d} of {b}"
+                        nano = nani.replace(f"This Episode", bo)
+                    else:
+                        nano = nani
+                except NameError:
+                    nano = nani
+                if "Fileinfo" in nano:
+                    ffmpeg = nano.replace(f"Fileinfo", bb2)
+                else:
+                    ffmpeg = nano
                 dtime = ts(int((es - s).seconds) * 1000)
                 hehe = f"{out};{dl};{list(QUEUE.keys())[0]}"
                 wah = code(hehe)
@@ -275,8 +321,11 @@ async def something():
                             os.remove(dl)
                         except Exception:
                             await nnn.reply("**Reason:** Download Cancelled!")
-                        await wak.delete()
-                        await nn.delete()
+                        try:
+                            await nn.delete()
+                            await wak.delete()
+                        except Exception:
+                            pass
                         QUEUE.pop(list(QUEUE.keys())[0])
                         await save2db()
                         continue
@@ -286,8 +335,11 @@ async def something():
                     LOGS.info(stderr.decode)
                 ees = dt.now()
                 time.time()
-                await nn.delete()
-                await wak.delete()
+                try:
+                    await nn.delete()
+                    await wak.delete()
+                except Exception:
+                    pass
                 tex = "`▲ Uploading ▲`"
                 nnn = await app.send_message(chat_id=e.chat_id, text=tex)
                 fname = out.split("/")[1]
@@ -305,21 +357,24 @@ async def something():
                 x = dtime
                 xx = ts(int((ees - es).seconds) * 1000)
                 xxx = ts(int((eees - ees).seconds) * 1000)
-                a1 = await info(dl, e)
-                a2 = await info(out, e)
-                text = ""
-                if rlsgrp:
-                    text += f"**Source:** `[{rlsgrp}]`"
-                text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
-                dp = await ds.reply(
-                    text,
-                    disable_web_page_preview=True,
-                    quote=True,
-                )
-                if LOG_CHANNEL:
-                    await dp.copy(chat_id=chat)
+                try:
+                    a1 = await info(dl, e)
+                    a2 = await info(out, e)
+                    text = ""
+                    if rlsgrp:
+                        text += f"**Source:** `[{rlsgrp}]`"
+                    text += f"\n\nMediainfo: **[Before]({a1})**//**[After]({a2})**"
+                    dp = await ds.reply(
+                        text,
+                        disable_web_page_preview=True,
+                        quote=True,
+                    )
+                    if LOG_CHANNEL:
+                        await dp.copy(chat_id=chat)
+                except Exception:
+                    pass
                 dk = await ds.reply(
-                    f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nCompressed Size : {hbs(com)}\nCompressed Percentage : {per}\n\nDownloaded in {x}\nCompressed in {xx}\nUploaded in {xxx}",
+                    f"**Encode Stats:**\n\nOriginal Size : {hbs(org)}\nEncoded Size : {hbs(com)}\nEncoded Percentage : {per}\n\nDownloaded in {x}\nEncoded in {xx}\nUploaded in {xxx}",
                     disable_web_page_preview=True,
                     quote=True,
                 )
