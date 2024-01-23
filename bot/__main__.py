@@ -182,7 +182,7 @@ async def something():
                 s = dt.now()
                 try:
                     dl = "downloads/" + name
-                    down = await app.download_media(
+                    down = await download_file(
                         message=file,
                         file_name=dl,
                     )
