@@ -20,6 +20,7 @@ from pathlib import Path
 import psutil
 
 from .funcn import *
+from .FastTelethon import upload_file
 from .util import custcap, dynamicthumb, get_readable_file_size, parse
 from .worker import *
 
