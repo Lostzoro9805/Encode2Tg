@@ -606,6 +606,8 @@ async def pencode(message):
         e = xxx
         hehe = f"{out};{dl};0"
         wah = code(hehe)
+        user = message.from_user.id
+        xxx = await xxx.edit("`Waiting For Encoding To Complete`")
         nn = await e.edit(
             "`Encoding File(s)…` \n**⏳This Might Take A While⏳**",
             buttons=[
