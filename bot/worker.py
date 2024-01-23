@@ -599,52 +599,14 @@ async def pencode(message):
         kk = dl.split("/")[-1]
         aa = kk.split(".")[-1]
         rr = f"encode"
-        namo = dl.split("/")[1]
-        if "v2" in namo:
-            name = namo.replace("v2", "")
-        else:
-            name = namo
-        bb1 = await parse(name, kk, aa)
-        bb = bb1[0]
-        bb2 = bb1[1]
-        # if "'" in bb:
-        # bb = bb.replace("'", "")
+        bb = kk.replace(f".{aa}", " Encoded.mkv")
         out = f"{rr}/{bb}"
-        b, d, rlsgrp = await dynamicthumb(name, kk, aa)
-        tbcheck = Path("thumb2.jpg")
-        if tbcheck.is_file():
-            thum = "thumb2.jpg"
-        else:
-            thum = "thumb.jpg"
-        with open("ffmpeg.txt", "r") as file:
-            nani = file.read().rstrip()
-            # ffmpeg = file.read().rstrip()
-            file.close()
-        try:
-            if "This Episode" in nani:
-                b = b.replace("'", "")
-                b = b.replace(":", "\\:")
-                bo = b
-                if d:
-                    bo = f"Episode {d} of {b}"
-                nano = nani.replace(f"This Episode", bo)
-            else:
-                nano = nani
-        except Exception:
-            nano = nani
-        if "Fileinfo" in nano:
-            # bb = bb.replace("'", "")
-            ffmpeg = nano.replace(f"Fileinfo", bb2)
-        else:
-            ffmpeg = nano
+        thum = "thumb.jpg"
         dtime = ts(int((es - s).seconds) * 1000)
         e = xxx
         hehe = f"{out};{dl};0"
         wah = code(hehe)
-        user = message.from_user.id
-        xxx = await xxx.edit("`Waiting For Encoding To Complete`")
-        nn = await bot.send_message(
-            user,
+        nn = await e.edit(
             "`Encoding File(s)…` \n**⏳This Might Take A While⏳**",
             buttons=[
                 [Button.inline("📂", data=f"pres{wah}")],
