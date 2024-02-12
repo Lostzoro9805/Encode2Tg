@@ -26,7 +26,7 @@ try:
     BOT_TOKEN = config("BOT_TOKEN", "6942815361:AAHwpmE7ThoaKWJJyRIrIZHRXOaxooCXGd8")
     # BOT_TOKEN = ""
     DEV = 5385471287
-    OWNER = config("OWNER", "5385471287")
+    OWNER = config("OWNER", "-1001533601450")
     # OWNER = ""
     FFMPEG = config("FFMPEG", "ffmpeg -i '''{}''' -c:v libx265 -crf 28 -c:s copy? -s 854x480 -preset veryfast -ab 35k '''{}''' -y")
     #FFMPEG = 
